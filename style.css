@@ -1,0 +1,1369 @@
+/* ===========================
+   VARIÁVEIS DE TEMA
+   =========================== */
+   :root {
+    --fundo-corpo: #050816;
+    --fundo-cartao: rgba(15, 23, 42, 0.9);
+    --fundo-cartao-suave: rgba(15, 23, 42, 0.7);
+    --primaria: #6366f1;     /* azul arroxeado */
+    --secundaria: #a855f7;   /* lilás */
+    --destaque: #22d3ee;     /* ciano suave */
+    --texto: #e5e7eb;
+    --texto-suave: #9ca3af;
+    --borda: rgba(148, 163, 184, 0.45);
+    --raio-grande: 18px;
+    --sombra-suave: 0 22px 45px rgba(15, 23, 42, 0.7);
+  }
+  
+  /* ===========================
+     RESET BÁSICO
+     =========================== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden; /* evita qualquer corte horizontal */
+  }
+  
+  body {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      sans-serif;
+    background: radial-gradient(circle at top, #1d2357 0, #050816 45%, #020617 100%);
+    color: var(--texto);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  /* ===========================
+     LAYOUT GERAL
+     =========================== */
+  .limite {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* ===========================
+     BARRA DE NAVEGAÇÃO
+     =========================== */
+     .barra-navegacao {
+        position: fixed;          /* em vez de sticky */
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;             /* bem acima do resto */
+        width: 100%;
+      
+        backdrop-filter: blur(20px);
+        background: linear-gradient(
+          to bottom,
+          rgba(2, 6, 23, 0.92),
+          rgba(2, 6, 23, 0.55)
+        );
+        border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      }
+      
+  
+  .barra-conteudo {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--texto-suave);
+  }
+  
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.04em;
+  }
+  
+  .marca-logo-img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    border-radius: 99px;
+    box-shadow:
+      0 0 10px rgba(168, 85, 247, 0.45),
+      0 0 18px rgba(56, 189, 248, 0.25);
+  }
+  
+  .links-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    font-size: 0.92rem;
+  }
+  
+  .links-navegacao a {
+    color: var(--texto-suave);
+    position: relative;
+    padding-bottom: 2px;
+  }
+  
+  .links-navegacao a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primaria), var(--secundaria));
+    transition: width 0.2s ease;
+  }
+  
+  .links-navegacao a:hover {
+    color: var(--texto);
+  }
+  
+  .links-navegacao a:hover::after {
+    width: 100%;
+  }
+  
+  .botao-menu {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--texto);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  /* ===========================
+     TOPO / HERO
+     =========================== */
+  .topo-destaque {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 4.5rem 0 4rem;   /* altura padrão desktop */
+  }
+  
+  .fundo-borrao {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(40px);
+    opacity: 0.5;
+    z-index: -1;
+  }
+  
+  .borrao-1 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, var(--secundaria), transparent);
+    top: -60px;
+    left: -40px;
+  }
+  
+  .borrao-2 {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, var(--primaria), transparent);
+    bottom: -100px;
+    right: -80px;
+  }
+  
+  .topo-conteudo {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+  
+  .faixa-rolando {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .conteudo-rolando {
+    display: inline-flex;
+    gap: 2rem;
+    white-space: nowrap;
+    animation: rolarHorizontal 16s linear infinite;
+  }
+  
+  .conteudo-rolando span {
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    color: var(--destaque);
+    text-transform: uppercase;
+  }
+  
+  @keyframes rolarHorizontal {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .nome-destaque {
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primaria), var(--secundaria), var(--destaque));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 14px rgba(99, 102, 241, 0.35);
+    margin-bottom: 0.6rem;
+    animation: brilhoNome 6s ease-in-out infinite alternate;
+  }
+  
+  @keyframes brilhoNome {
+    0% {
+      text-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+    }
+    100% {
+      text-shadow: 0 0 26px rgba(168, 85, 247, 0.55);
+    }
+  }
+  
+  .topo-texto h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  
+  .topo-texto h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--texto-suave);
+    margin-bottom: 1.4rem;
+  }
+  
+  .topo-descricao {
+    max-width: 620px;
+    font-size: 0.97rem;
+    color: #cbd5f5;
+    margin-bottom: 1.8rem;
+  }
+  
+  .topo-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  
+  /* BOTÕES GENÉRICOS */
+  .botao {
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+  }
+  
+  .botao i {
+    font-size: 0.92rem;
+  }
+  
+  .botao-principal {
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    box-shadow: 0 16px 35px rgba(79, 70, 229, 0.65);
+  }
+  
+  .botao-principal:hover {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 22px 45px rgba(79, 70, 229, 0.85);
+  }
+  
+  /* wrapper do botão + menu */
+  .grupo-contato {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* botão falar comigo – usa o tema */
+  #btnFalarComigo {
+    background: radial-gradient(
+      circle at top left,
+      rgba(99, 102, 241, 0.28),
+      rgba(15, 23, 42, 0.95)
+    );
+    border-color: var(--borda);
+    color: var(--texto);
+  }
+  
+  #btnFalarComigo:hover {
+    border-color: var(--primaria);
+    box-shadow: 0 0 18px rgba(99, 102, 241, 0.55);
+  }
+  
+  .menu-contato {
+    position: absolute;
+    display: none;
+  
+    /* abre para CIMA do botão */
+    bottom: calc(100% + 0.4rem);
+    top: auto;
+  
+    right: 0;
+    background: var(--fundo-cartao);
+    border: 1px solid var(--borda);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 14px;
+    padding: 0.6rem 0;
+    box-shadow: 0 0 20px rgba(15, 23, 42, 0.9);
+    z-index: 200;
+    width: 200px;
+    animation: fadeInMenu 0.18s ease-out;
+  }
+  
+  
+  .menu-contato button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--texto);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .menu-contato button i {
+    font-size: 1rem;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .menu-contato button:hover {
+    background: rgba(99, 102, 241, 0.2);
+    color: #f9fafb;
+  }
+  
+  @keyframes fadeInMenu {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .botao-secundario {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(148, 163, 184, 0.65);
+  }
+  
+  .botao-secundario:hover {
+    border-color: var(--primaria);
+    background: rgba(15, 23, 42, 1);
+  }
+  
+  /* ===========================
+     TOAST DE FEEDBACK (COPIAR E-MAIL)
+     =========================== */
+  .toast-copy-card i {
+    background: linear-gradient(135deg, var(--primaria), var(--destaque));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .toast-copy-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  
+  .toast-copy-overlay.ativo {
+    display: flex;
+    animation: fadeInToast 0.18s ease-out;
+  }
+  
+  .toast-copy-card {
+    pointer-events: auto;
+    min-width: 260px;
+    max-width: 90%;
+    padding: 1rem 1.4rem;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid var(--borda);
+    box-shadow:
+      0 0 25px rgba(15, 23, 42, 0.9),
+      0 0 35px rgba(88, 28, 135, 0.55);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  
+  .toast-copy-texto {
+    font-size: 0.95rem;
+    color: var(--texto);
+  }
+  
+  @keyframes fadeInToast {
+    from {
+      opacity: 0;
+      transform: translateY(8px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* CARTÃO LATERAL DO TOPO */
+  .topo-cartao {
+    background: radial-gradient(
+      circle at top left,
+      rgba(129, 140, 248, 0.2),
+      rgba(15, 23, 42, 0.95)
+    );
+    border-radius: 22px;
+    padding: 1.6rem 1.5rem;
+    border: 1px solid rgba(129, 140, 248, 0.5);
+    box-shadow: var(--sombra-suave);
+    position: relative;
+    overflow: hidden;
+    text-align: center;   
+  }
+  
+  .topo-cartao::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: conic-gradient(
+      from 180deg,
+      rgba(129, 140, 248, 0.5),
+      transparent,
+      rgba(56, 189, 248, 0.4),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .topo-cartao:hover::before {
+    opacity: 1;
+  }
+  
+  .topo-cartao::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 20px;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.98),
+      rgba(15, 23, 42, 0.98)
+    );
+    z-index: 0;
+  }
+  
+  .topo-cartao > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .topo-foto {
+    width: 140px;
+    height: 140px;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 2px solid rgba(168, 85, 247, 0.7);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.35);
+    margin-bottom: 1rem;
+    margin: 0 auto 1rem;  
+    object-position: center;
+  }
+  
+  /* Menos zoom + centralização do rosto */
+  .topo-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center -15px;
+    transition: transform 0.3s ease, object-position 0.3s ease;
+  }
+  
+  .topo-titulo-extra {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  
+  .topo-texto-extra {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+    margin-bottom: 1rem;
+  }
+  
+  .topo-etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .topo-etiquetas span {
+    font-size: 0.78rem;
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.65);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  
+  /* ===========================
+     SEÇÕES GENÉRICAS
+     =========================== */
+  .secao {
+    min-height: auto;          /* padrão: altura só do conteúdo */
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 5rem 0 3.5rem;
+  }
+  
+  .secao-alternada {
+    background: radial-gradient(
+      circle at top left,
+      rgba(79, 70, 229, 0.18),
+      rgba(5, 8, 22, 1)
+    );
+  }
+  
+  .secao-titulo {
+    font-size: 1.6rem;
+    margin-bottom: 4rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .secao-titulo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.4rem;
+    width: 45%;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primaria), transparent);
+  }
+  
+  .secao-texto {
+    max-width: 760px;
+    color: var(--texto-suave);
+    font-size: 0.97rem;
+  }
+  
+  /* ===========================
+     LINHA DO TEMPO (FORMAÇÃO)
+     =========================== */
+  .linha-tempo {
+    margin-top: 1.8rem;
+    border-left: 1px solid rgba(148, 163, 184, 0.4);
+    padding-left: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+  }
+  
+  .linha-tempo-item {
+    position: relative;
+  }
+  
+  .linha-tempo-ponto {
+    position: absolute;
+    left: -2rem;
+    top: 0.75rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primaria), var(--secundaria));
+    box-shadow: 0 0 12px rgba(129, 140, 248, 0.9);
+  }
+  
+  .linha-tempo-conteudo {
+    background: var(--fundo-cartao);
+    border-radius: var(--raio-grande);
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra-suave);
+  }
+  
+  .linha-tempo-instituicao,
+  .linha-tempo-ano {
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+  }
+  
+  .linha-tempo-ano {
+    margin-bottom: 0.4rem;
+  }
+  
+  .linha-tempo-descricao {
+    font-size: 0.9rem;
+    color: #d1d5db;
+  }
+  
+  /* ===========================
+     CERTIFICAÇÕES
+     =========================== */
+  .secao-cabecalho {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.6rem;
+  }
+  
+  /* CONTAINER DOS CERTIFICADOS (apenas horizontal) */
+  .grade-certificados {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  /* para quando estiver arrastando */
+  .grade-certificados.arrastando,
+  .grade-certificados.arrastando * {
+    user-select: none;
+  }
+  
+  /* ESTILIZAÇÃO DO SCROLL + CURSOR MODERNO */
+  .horizontal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #a855f7 #020617;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .horizontal-scroll:active {
+    cursor: grabbing;
+  }
+  
+  /* Scrollbar moderna – Chrome/Edge */
+  .horizontal-scroll::-webkit-scrollbar {
+    height: 10px;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background: linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.12),
+      rgba(168, 85, 247, 0.18)
+    );
+    border-radius: 999px;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #38bdf8, #a855f7);
+    border-radius: 999px;
+    border: 2px solid rgba(15, 23, 42, 0.9);
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    filter: brightness(1.15);
+  }
+  
+  /* CARD DO CERTIFICADO */
+  .cartao-certificado {
+    flex: 0 0 320px;
+    scroll-snap-align: start;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: 0.3s ease;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+  }
+  
+  .cartao-certificado:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 26px rgba(168, 85, 247, 0.55);
+    border-color: rgba(56, 189, 248, 0.8);
+  }
+  
+  /* SELO DO ÍCONE */
+  .selo-certificado {
+    font-size: 2.3rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    color: #e5e7eb;
+    background: radial-gradient(circle at 30% 20%, #38bdf8, #a855f7);
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
+  }
+  
+  /* BOTÃO "VER CERTIFICADO" */
+  .certificado-botao-ver {
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #38bdf8, #a855f7);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    color: #0b1120;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+  }
+  
+  .certificado-botao-ver:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+  }
+  
+  .certificado-instituicao,
+  .certificado-ano {
+    font-size: 0.86rem;
+    color: var(--texto-suave);
+  }
+  
+  .certificado-descricao {
+    font-size: 0.9rem;
+    color: #d1d5db;
+    margin-top: 0.25rem;
+  }
+  
+  /* ===========================
+     MODAL DE CERTIFICADO
+     =========================== */
+  .modal-certificado {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 1rem;
+  }
+  
+  .modal-certificado.ativo {
+    display: flex;
+    animation: fadeIn 0.25s ease-out;
+  }
+  
+  /* fundo vidro */
+  .modal-fundo {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    box-shadow: inset 0 0 40px rgba(168, 85, 247, 0.2);
+  }
+  
+  /* caixa do modal (vidro premium) */
+  .modal-conteudo {
+    position: relative;
+    width: min(95%, 1300px);
+    max-height: 90vh;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+    padding: 1rem;
+    overflow: hidden;
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    box-shadow:
+      0 0 25px rgba(168, 85, 247, 0.35),
+      0 0 35px rgba(56, 189, 248, 0.25);
+    animation: scaleIn 0.25s ease-out;
+  }
+  
+  /* imagem grande e responsiva */
+  .modal-conteudo img {
+    width: 100%;
+    max-height: 85vh;
+    border-radius: 16px;
+    object-fit: contain;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.45);
+  }
+  
+  /* botão fechar */
+  .modal-fechar {
+    position: absolute;
+    top: 1.8rem;
+    right: 1.9rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(2, 6, 23, 0.55);
+    backdrop-filter: blur(6px);
+    border-radius: 999px;
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    color: #fff;
+    font-size: 1.2rem;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .modal-fechar:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+  }
+  
+  /* ===========================
+     ANIMAÇÕES
+     =========================== */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.93);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Layout geral: esquerda (lista) + direita (card flutuante) */
+  .competencias-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  
+  /* coluna principal */
+  .competencias-coluna-principal .secao-titulo {
+    margin-bottom: 4rem;
+  }
+  
+  .lista-competencias {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .lista-competencias li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 1rem;
+    color: var(--texto-suave);
+    padding-left: 0.2rem;
+  }
+  
+  .lista-competencias i {
+    margin-top: 0.12rem;
+    color: #a855f7;
+  }
+  
+  /* ============================
+     CARD FLUTUANTE DE SKILLS
+     ============================ */
+  .competencias-card-tecnico {
+    position: sticky;
+    top: 100px;
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem 1.8rem;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-radius: 22px;
+    border: 1px solid rgba(168, 85, 247, 0.55);
+    box-shadow:
+      0 0 25px rgba(168, 85, 247, 0.4),
+      0 0 35px rgba(56, 189, 248, 0.25);
+    margin-top: 4rem;
+  }
+  
+  .competencias-card-tecnico h4 {
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+    color: #e5e7eb;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  /* lista de skills técnicas dentro do card */
+  .lista-skills-tecnicas {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .lista-skills-tecnicas li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+  
+  /* nome da skill */
+  .lista-skills-tecnicas span {
+    flex: 1;
+  }
+  
+  /* Estrelas (sem precisar de JS) */
+  .stars {
+    flex-shrink: 0;
+    display: flex;
+  }
+  
+  .stars::before {
+    content: "★★★★★";
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, #a855f7, #38bdf8);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  /* níveis diferentes */
+  .stars[data-stars="4"]::before {
+    content: "★★★★☆";
+  }
+  .stars[data-stars="3"]::before {
+    content: "★★★☆☆";
+  }
+  .stars[data-stars="2"]::before {
+    content: "★★☆☆☆";
+  }
+  .stars[data-stars="1"]::before {
+    content: "★☆☆☆☆";
+  }
+  
+  /* ===========================
+     CONTATO
+     =========================== */
+  .grade-contato {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+  }
+  
+  .item-contato {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+  }
+  
+  .item-contato i {
+    color: var(--primaria);
+  }
+  
+  /* ===========================
+     CONTATO (versão compacta)
+     =========================== */
+  .secao-contato {
+    padding: 3rem 0 2rem;
+    min-height: auto;
+    display: block;
+  }
+  
+  .secao-contato .secao-titulo {
+    margin-bottom: 2rem;
+  }
+  
+  .secao-contato .grade-contato {
+    margin-top: 1rem;
+  }
+  
+  /* ===========================
+     RODAPÉ
+     =========================== */
+  .rodape {
+    padding: 1.8rem 0;
+    background: #020617;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+  
+  /* ===========================
+     ANIMAÇÃO REVELAR
+     =========================== */
+  .revelar {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .revelar.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ===========================
+     RESPONSIVO
+     =========================== */
+  
+  /* TABLET / TELAS MÉDIAS (até ~900px) */
+  @media (max-width: 900px) {
+
+    .topo-conteudo {
+      grid-template-columns: 1fr;
+    }
+  
+    .topo-destaque {
+      padding: 4rem 0 3rem;
+      align-items: flex-start;
+    }
+  
+    .secao {
+      padding: 4.5rem 0 3rem;
+      align-items: flex-start;
+    }
+  
+    .limite {
+      padding: 0 1rem;
+    }
+  
+    .competencias-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .competencias-card-tecnico {
+      position: static;
+      top: auto;
+      margin-top: 2.5rem;
+    }
+  
+    .grade-certificados {
+      padding-inline: 1rem;
+      gap: 1.2rem;
+    }
+  
+    .cartao-certificado {
+      flex: 0 0 280px;
+    }
+  }
+  
+  @media (max-width: 720px) {
+    body {
+      font-size: 95%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    .limite {
+      padding-left: 0.7rem;
+      padding-right: 0.7rem;
+    }
+  
+    .marca-logo-img {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .barra-conteudo {
+      height: 50px;
+    }
+  
+    .topo-conteudo {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+  
+    .topo-destaque {
+      padding: 0.8rem 0 0rem;
+      min-height: auto;
+    }
+  
+    .faixa-rolando {
+      margin-bottom: 0.22rem;
+      font-size: 0.72rem;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    .conteudo-rolando span {
+      font-size: 0.61rem;
+      padding-right: 0.3rem;
+    }
+  
+    .nome-destaque {
+      font-size: 2rem;
+      line-height: 1.16;
+      margin-bottom: 0.85rem;
+      margin-top: 2.5rem;
+      word-break: break-word;
+      max-width: 90%;
+    }
+  
+    .topo-texto h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.53rem;
+      max-width: 100%;
+    }
+  
+    .topo-texto h2,
+    .topo-descricao {
+      font-size: 0.83rem;
+      margin-bottom: 0.6rem;
+      max-width: 90%;
+    }
+  
+    .topo-acoes {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+  
+    .botao {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.91rem;
+      width: auto;
+      min-width: 90px;
+      max-width: 220px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+  
+    /* Botão 'Ver certificações' menos largo e centralizado */
+    .certificado-botao-ver,
+    .cartao-certificado .botao {
+      max-width: 180px;
+      min-width: 0;
+      width: 100%;
+      padding: 0.35rem 0.62rem;
+      font-size: 0.89rem;
+      margin: 0.38rem auto 0 auto;
+      display: block;
+      box-sizing: border-box;
+    }
+  
+    /* TOPO CARTAO: lateral igual à .limite */
+    .topo-cartao {
+        width: 97%;
+        max-width: calc(100vw - 1.7rem);
+        min-width: 0;
+        margin-left: 0.3rem;
+        margin-right: auto;
+        margin-top: 0.2rem;
+        margin-bottom: 1rem;
+        padding: 0.8rem 0.7rem 0.5rem 0.7rem;
+        font-size: 0.91rem;
+        box-sizing: border-box;
+        background: radial-gradient(circle at top left,
+          rgba(129, 140, 248, 0.14),
+          rgba(15, 23, 42, 0.91)
+        );
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+  
+    .topo-foto {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 0.32rem;
+      border-width: 1px;
+    }
+    .topo-foto img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+    }
+  
+    .topo-cartao p,
+    .topo-cartao .topo-titulo-extra,
+    .topo-cartao .topo-texto-extra {
+      font-size: 0.82rem;
+      word-break: break-word;
+      white-space: normal;
+      max-width: 100%;
+    }
+  
+    .topo-etiquetas {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.22rem;
+    }
+    .topo-etiquetas span {
+      font-size: 0.75rem;
+      padding: 0.19rem 0.32rem;
+      margin-bottom: 0.09rem;
+      min-width: 0;
+      max-width: 98vw;
+      box-sizing: border-box;
+    }
+  
+    /* Menu mobile */
+    .links-navegacao {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      padding: 0.9rem;
+      flex-direction: column;
+      background: rgba(2,6,23,0.99);
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      z-index: 20;
+    }
+    .links-navegacao.ativa {display: flex;}
+    .botao-menu {display: block;}
+  
+    .grade-certificados {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        overflow-x: visible;
+        overflow-y: auto;  /* Corrigido para garantir scroll vertical normal */
+        padding: 0;
+        scroll-snap-type: none;
+        touch-action: auto;
+        position: static;
+        max-height: none;  /* Garante que o container nunca limita o scroll */
+      }
+      
+      .cartao-certificado {
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 0 7px rgba(168,85,247,0.18);
+        padding: 0.8rem;
+        scroll-snap-align: none;
+        position: static;
+        overflow: visible;
+        touch-action: auto;
+      }
+      
+      .selo-certificado {
+        font-size: 1.1rem;
+        width: 28px;
+        height: 28px;
+        margin-bottom: 0.42rem;
+      }
+    /* Modal certificado centralizado e ajustado */
+    .modal-conteudo img {
+      max-width: 96vw;
+      max-height: 32vh;
+    }
+    .modal-fechar {
+      top: 0.22rem;
+      right: 0.33rem;
+      width: 22px;
+      height: 22px;
+      font-size: 0.83rem;
+    }
+  
+    /* Competências */
+    .competencias-layout {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+    .competencias-card-tecnico {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 9px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .lista-skills-tecnicas li {
+      font-size: 0.81rem;
+      gap: 0.27em;
+    }
+    .lista-competencias li {
+      font-size: 0.86rem;
+      gap: 0.18em;
+    }
+  
+    /* Contato */
+    .grade-contato {
+      flex-direction: column;
+      gap: 0.23rem;
+      width: 100%;
+    }
+    .item-contato {
+      font-size: 0.88rem;
+      gap: 0.32rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    /* Footer */
+    .rodape {
+      padding: 0.4rem 0;
+      font-size: 0.74rem;
+      text-align: center;
+    }
+  }
+  
+  /* DESKTOP GRANDE – aqui sim usamos tela cheia */
+  @media (min-width: 1024px) {
+    .topo-destaque {
+      min-height: 100vh;
+    }
+  
+    .secao {
+      min-height: 100vh;
+      align-items: center;
+    }
+  }
+  
