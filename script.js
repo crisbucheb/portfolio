@@ -239,7 +239,7 @@ carrosselCertificados.addEventListener(
       if (copiarEmail) {
         copiarEmail.addEventListener('click', () => {
           navigator.clipboard
-            .writeText('cfbucheb@gmail.com')
+            .writeText('cbucheb@sp.gov.br')
             .then(() => {
               menuContato.style.display = 'none';
               mostrarToast('E-mail copiado com sucesso!');
@@ -289,4 +289,5 @@ document.addEventListener('DOMContentLoaded', () => {
       marcaTexto.addEventListener('click', scrollToTop);
     }
   });
+
   
